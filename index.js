@@ -4,15 +4,30 @@ const express = require("express");
 const app = express();
 
 // Seperate these out in case of using Docker to wrap the app
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const HOST = "0.0.0.0";
 
-// Standard route, sends back response
+// Setup CRUD requests to receive JSON data
+app.use(express.json());
+// For form data requests
+app.use(express.urlencoded({ extended: true }));
+
+// Standard route, sends back a HTML response
 app.get("/", (request, response) => {
-  response.send("Hello world!");
+  response.send("Hello, World!");
+});
+
+// API route, sends back a JSON response
+app.get("/", (request, response) => {
+  response.json({ message: "Hello world!" });
 });
 
 // Run the server by making it 'listen' for network traffic
 app.listen(PORT, HOST, () => {
-  console.log("Server is running!");
+  // Conditional string to handle "0.0.0.0" -> "localhost" conversion
+  console.log(
+    `Server is running! - Listening at http://${
+      HOST == "0.0.0.0" && "localhost"
+    }:${PORT}/`
+  );
 });
