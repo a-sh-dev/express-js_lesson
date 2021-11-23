@@ -1,4 +1,5 @@
 const express = require("express");
+const importedPostRouting = require("./posts/postsRoutes");
 
 // Initialise Express as an instance named 'app'
 const app = express();
@@ -21,6 +22,9 @@ app.get("/", (request, response) => {
 app.get("/", (request, response) => {
   response.json({ message: "Hello world!" });
 });
+
+// Imported "/posts" routing
+app.use("/posts", importedPostRouting);
 
 // Run the server by making it 'listen' for network traffic
 app.listen(PORT, HOST, () => {
