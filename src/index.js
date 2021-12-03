@@ -31,7 +31,7 @@ app.listen(PORT, HOST, () => {
   // Conditional string to handle "0.0.0.0" -> "localhost" conversion
   console.log(
     `Server is running! - Listening at http://${
-      HOST == '0.0.0.0' && 'localhost'
-    }:${PORT}/`
+      HOST === '0.0.0.0' && 'localhost'
+    }:${PORT}/`,
   );
 });

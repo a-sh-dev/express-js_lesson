@@ -12,14 +12,14 @@ routes.get('/', (request, response) => {
 // Set up route params
 routes.get('/:postID', (request, response) => {
   response.json(
-    `Received a GET response for post ID: ${request.params.postID}`
+    `Received a GET response for post ID: ${request.params.postID}`,
   );
 });
 
 // Set up POST route
 routes.post('/:postID', (request, response) => {
   // Cleanly build a response object
-  let jsonResponse = {
+  const jsonResponse = {
     message: `POST request for post ID: ${request.params.postID}`,
     receivedBody: request.body,
   };
