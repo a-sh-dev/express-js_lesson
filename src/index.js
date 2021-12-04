@@ -1,3 +1,8 @@
+// Setup .env variables
+require('dotenv').config();
+
+console.log(`Pinging dotenv: \n=> ${process.env.SAMPLE_MSG}`);
+
 const express = require('express');
 const importedPostRouting = require('./posts/postsRoutes');
 
