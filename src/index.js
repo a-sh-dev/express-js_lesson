@@ -2,6 +2,14 @@
 require('dotenv').config();
 
 console.log(`Pinging dotenv: \n=> ${process.env.SAMPLE_MSG}`);
+// Setup Firebase Admin
+const firebaseAdmin = require('firebase-admin');
+
+firebaseAdmin.initializeApp({
+  credential: firebaseAdmin.credential.cert(
+    JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS),
+  ),
+});
 
 const express = require('express');
 const importedPostRouting = require('./posts/postsRoutes');
@@ -12,9 +20,9 @@ const app = express();
 // Seperate these out in case of using Docker to wrap the app
 const PORT = process.env.PORT || 3000;
 const HOST = '0.0.0.0';
-
 // Setup CRUD requests to receive JSON data
 app.use(express.json());
+
 // For form data requests
 app.use(express.urlencoded({ extended: true }));
 
