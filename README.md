@@ -5,5 +5,9 @@ Deployed app:
 ```
 https://a-sh-express-lesson.herokuapp.com/
 ```
-Note:
-This lesson is also to experiment *eslint* and *prettier* configuration for team collaboration.
+
+### Utilised:
+- Dotenv
+- Firebase Auth
+
+<sub>*Note*: This lesson is also part of experimenting *eslint* and *prettier* configuration for team collaboration.</sub>
