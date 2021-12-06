@@ -11,9 +11,7 @@ routes.get('/', (request, response) => {
 
 // Set up route params
 routes.get('/:postID', (request, response) => {
-  response.json(
-    `Received a GET response for post ID: ${request.params.postID}`,
-  );
+  response.json(`Received a GET request for post ID: ${request.params.postID}`);
 });
 
 // Set up POST route
