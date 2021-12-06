@@ -1,11 +1,10 @@
-// Require and initialise Firebase Client
+// Require and initialise Firebase Admin & Client
+const firebaseAdmin = require('firebase-admin');
 const firebaseClient = require('firebase/app');
 
-firebaseClient.initializeApp(JSON.parse(process.env.FIREBASE_CLIENT_CONFIG));
 const { getAuth, signInWithEmailAndPassword } = require('firebase/auth');
 
-// Initialised in index.js – require the admin
-const firebaseAdmin = require('firebase-admin');
+firebaseClient.initializeApp(JSON.parse(process.env.FIREBASE_CLIENT_CONFIG));
 
 // Setup user signup
 async function signupUser(userDetails) {
@@ -14,11 +13,12 @@ async function signupUser(userDetails) {
     .createUser({
       email: userDetails.email,
       password: userDetails.password,
-      displayName: userDetails.username,
+      username: userDetails.username,
       emailVerified: true,
       // photoURL: "somefreestockwebsite.com/image/someimage.png"
     })
     .then(async (userRecord) => {
+      console.log(`\n-- Raw userRecord is ${JSON.stringify(userRecord)}\n`);
       // Set a custom clain, or authorisation or role data
       const defaultUserClaims = firebaseAdmin
         .auth()
@@ -63,7 +63,7 @@ async function signInUser(userDetails) {
       };
     })
     .catch((error) => {
-      console.log(`Internal sign-in error:\n-${error}`);
+      console.log(`Internal sign-in error:\n->${error}`);
       return { error };
     });
   return signInResult;

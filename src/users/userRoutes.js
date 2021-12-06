@@ -16,6 +16,7 @@ routes.post('/sign-up', async (request, response) => {
     response.json({ error: 'Password is too short!' });
   }
 
+  // Hand data to sign-up utils
   const signUpResult = await signUpUser(newUserDetails);
 
   if (signUpResult.error !== null) {
